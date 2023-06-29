@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link th:href="@{/css/style.css}" rel="stylesheet" />
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script type="text/javascript" th:src="@{/js/api.js}"></script>
+    <title>Inicio</title>
+</head>
+<body>
+    <header>
+      <nav>
+        <div id="menuDefinition">
+          <a href="./odontologos">Odontologos</a>
+          <a href="./pacientes">Pacientes</a>
+          <a href="./turnos">Turnos</a>
+        </div>
+        <div>
+          <a href="/Loggin" >Log in <span>&rarr;</span></a>
+        </div>
+        <div>
+          <a href="/logout" >Log out <span>&rarr;</span></a>
+        </div>
+      </nav>
+    </header>
+</body>
+</html>

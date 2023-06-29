@@ -1,0 +1,143 @@
+@import url("https://fonts.googleapis.com/css2?family=Raleway:wght@100;200;300;400;500;600;700;800;900&display=swap");
+* {
+    margin: 5px;
+    padding: 0;
+    box-sizing: border-box;
+    font-size: 62.5%;
+}
+
+body {
+
+    font-family: 'Raleway', sans-serif;
+}
+
+header {
+    width: auto;
+    height: 60px;
+    font-weight: 400;
+    font-size: 5rem;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-color: #00BFFF;
+}
+
+nav {
+    width: 1350px;
+    padding: 0 10px 0 10px;
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+}
+
+nav a {
+    font-size: 1.5rem;
+    text-decoration: none;
+    color: white;
+}
+
+nav div h5 {
+    color: white;
+    font-size: 1.5rem;
+    font-weight: 400;
+}
+
+main {
+    margin-top: 30px;
+}
+
+main section h2 {
+    font-weight: 500;
+    font-size: 3rem;
+}
+
+button {
+    width: 100px;
+    height: 30px;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 10px;
+}
+
+button a {
+    width: 100px;
+    height: 30px;
+    font-weight: 400;
+    font-size: 1rem;
+    border-radius: 10px;
+    text-decoration: none;
+    color: black;
+}
+
+.container {
+    padding-top: 30px;
+    display: grid;
+    grid-template-columns: 200px 200px 200px 200px;
+    width: 1350px;
+    height: auto;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    font-size: 2rem;
+}
+
+.containerForm {
+    padding-top: 25px;
+    display: flex;
+    justify-content: center;
+}
+
+form {
+    width: 350px;
+}
+
+form div {
+    text-align: left;
+    padding-left: 5px;
+    padding-top: 5px;
+}
+
+form div div {
+    padding: 0;
+}
+
+/*Alta Odontologo*/
+
+label {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+input {
+    font-weight: 400;
+    font-size: 1.5rem;
+}
+
+.button {
+    padding-top: 20px;
+    text-align: center;
+}
+
+/*Alta Paciente*/
+
+form h5 {
+    font-weight: 600;
+    font-size: 1.5rem;
+}
+
+table {
+  width: 50%;
+  border-collapse: collapse;
+}
+th, td {
+  padding: 8px;
+  text-align: left;
+  border-bottom: 1px solid #ddd;
+}
+th {
+  background-color: #f2f2f2;
+}
+tr{
+    font-size:20px;
+}

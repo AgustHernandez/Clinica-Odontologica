@@ -18,14 +18,10 @@ public class Turno {
     @ManyToOne
     @JoinColumn(name="pacienteId")
     private Paciente paciente;
-    @ManyToOne
-    @JoinColumn(name="odontologoId")
-    private Odontologo odontologo;
 
-    public Turno(Date fecha, Paciente paciente, Odontologo odontologo) {
+    public Turno(Date fecha, Paciente paciente) {
         this.fecha = fecha;
         this.paciente = paciente;
-        this.odontologo = odontologo;
     }
 
     public Turno() {
@@ -49,13 +45,5 @@ public class Turno {
 
     public void setPaciente(Paciente paciente) {
         this.paciente = paciente;
-    }
-
-    public Odontologo getOdontologo() {
-        return odontologo;
-    }
-
-    public void setOdontologo(Odontologo odontologo) {
-        this.odontologo = odontologo;
     }
 }

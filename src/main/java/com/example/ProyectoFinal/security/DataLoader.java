@@ -13,8 +13,6 @@ import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
 import java.time.*;
-import java.time.temporal.ChronoUnit;
-import java.time.temporal.TemporalUnit;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -44,7 +42,6 @@ public class DataLoader implements ApplicationRunner  {
         String password2 = passwordEncoder2.encode("sa");
         userRepository.save(new AppUser("Agustina", "agustina", "agustina@digital.com", password, AppUserRole.ROLE_ADMIN));
         userRepository.save(new AppUser("Emiliano", "emiliano", "emiliano@digital.com", password2, AppUserRole.ROLE_USER));
-        crearTurnos(LocalDateTime.now(), LocalDateTime.now().plusDays(5));
         if(initializeData == 1) {
             //Creacion de odontologos ejemplo
             odontologoRepository.save(new Odontologo("Hernandez", "Agustina", "879456"));
@@ -61,25 +58,6 @@ public class DataLoader implements ApplicationRunner  {
         }
     }
 
-    public void crearTurnos(LocalDateTime fechaDesde, LocalDateTime fechaHasta) {
-        ZoneId zoneId = ZoneId.systemDefault();
 
-        ZonedDateTime dateTimeDesde = fechaDesde.atZone(zoneId);
-        ZonedDateTime dateTimeHasta = fechaHasta.atZone(zoneId);
-
-        List<Date> fechas = new ArrayList<>();
-        ZonedDateTime dateTimeActual = dateTimeDesde;
-        while (!dateTimeActual.isAfter(dateTimeHasta)) {
-            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).plusHours(1);
-            Date date = Date.from(roundedDateTime.toInstant());
-            fechas.add(date);
-            dateTimeActual = dateTimeActual.plusHours(1);
-        }
-
-        for (Date fecha : fechas) {
-            Turno turno = new Turno(fecha, null, null);
-            turnoRepository.save(turno);
-        }
-    }
 
     }

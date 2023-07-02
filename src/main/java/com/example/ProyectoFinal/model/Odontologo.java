@@ -2,7 +2,10 @@ package com.example.ProyectoFinal.model;
 
 import javax.persistence.*;
 
-import java.util.List;
+import java.time.LocalDateTime;
+import java.time.ZoneId;
+import java.time.ZonedDateTime;
+import java.util.*;
 
 @Entity
 @Table
@@ -18,14 +21,40 @@ public class Odontologo {
     private String apellido;
     private String nombre;
     private String matricula;
+    @OneToMany(cascade = CascadeType.ALL)
+    @JoinColumn(name = "odontologo_id")
+    private Set<Turno> turnos;
 
     public Odontologo(String apellido, String nombre, String matricula) {
         this.apellido = apellido;
         this.nombre = nombre;
         this.matricula = matricula;
+        crearTurnos(LocalDateTime.now(), LocalDateTime.now().plusDays(5));
     }
 
     public Odontologo() {
+    }
+
+    private void crearTurnos(LocalDateTime fechaDesde, LocalDateTime fechaHasta) {
+        this.turnos = new HashSet<Turno>();
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        ZonedDateTime dateTimeDesde = fechaDesde.atZone(zoneId);
+        ZonedDateTime dateTimeHasta = fechaHasta.atZone(zoneId);
+
+        List<Date> fechas = new ArrayList<>();
+        ZonedDateTime dateTimeActual = dateTimeDesde;
+        while (!dateTimeActual.isAfter(dateTimeHasta)) {
+            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).plusHours(1);
+            Date date = Date.from(roundedDateTime.toInstant());
+            fechas.add(date);
+            dateTimeActual = dateTimeActual.plusHours(1);
+        }
+
+        for (Date fecha : fechas) {
+            Turno turno = new Turno(fecha, null);
+            turnos.add(turno);
+        }
     }
 
     public String getApellido() {
@@ -43,7 +72,13 @@ public class Odontologo {
     public void setNombre(String nombre) {
         this.nombre = nombre;
     }
+    public Set<Turno> getTurnos() {
+        return turnos;
+    }
 
+    public void setTurnos(Set<Turno> turnos) {
+        this.turnos = turnos;
+    }
     public Long getId() {
         return Id;
     }

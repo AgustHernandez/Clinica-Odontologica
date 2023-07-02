@@ -32,7 +32,7 @@ public class PacienteDAO implements IDao<Paciente> {
 
     @Override
     public Paciente modificar(Paciente paciente) {
-        return null;
+        return pacienteRepository.save(paciente);
     }
 
     @Override

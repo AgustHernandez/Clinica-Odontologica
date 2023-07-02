@@ -44,7 +44,6 @@ public class TurnoService implements ITurnoServ {
 
     @Override
     public TurnoDTO agregarTurno(com.example.ProyectoFinal.model.Turno turno) {
-        turno.setOdontologo(odontologoIDao.buscar(turno.getOdontologo().getId()));
         turno.setPaciente(pacienteIDao.buscar(turno.getPaciente().getId()));
         com.example.ProyectoFinal.model.Turno agregarTurno = turnoDao.agregar(turno);
         TurnoDTO agregarTurnoDTODTO = mapper.convertValue(agregarTurno, TurnoDTO.class);

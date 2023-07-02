@@ -1,7 +1,6 @@
 package com.example.ProyectoFinal.controller;
 
-import com.example.ProyectoFinal.DTO.PacienteDTO;
-import com.example.ProyectoFinal.model.Paciente;
+import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
 import com.example.ProyectoFinal.services.interfaces.IPacienteServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,12 +33,12 @@ public class PacienteController {
     }
 
     @PostMapping("/pacientes")
-    public PacienteDTO agregarPaciente(@RequestBody Paciente paciente) {
+    public PacienteDTO agregarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) {
         return pacienteService.agregarPaciente(paciente);
     }
 
     @PutMapping("/pacientes")
-    public Paciente modificarPaciente(@RequestBody Paciente paciente) {
+    public com.example.ProyectoFinal.model.Paciente modificarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) {
         return pacienteService.modificarPaciente(paciente);
     }
 

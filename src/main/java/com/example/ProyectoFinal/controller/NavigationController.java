@@ -1,12 +1,7 @@
 package com.example.ProyectoFinal.controller;
 
-import com.example.ProyectoFinal.DTO.OdontologoDTO;
-import org.springframework.http.HttpStatus;
-import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.GetMapping;
-
-import java.util.List;
 
 @Controller
 public class NavigationController {
@@ -31,7 +26,7 @@ public class NavigationController {
 
     @GetMapping("/pacientes/alta")
     public String pacienteAlta() {
-        return "altaPacientes";
+        return "altaPaciente";
     }
 
     @GetMapping("/turnos")
@@ -41,6 +36,6 @@ public class NavigationController {
 
     @GetMapping("/turnos/alta")
     public String turnoAlta() {
-        return "altaTurnos";
+        return "altaTurno";
     }
 }

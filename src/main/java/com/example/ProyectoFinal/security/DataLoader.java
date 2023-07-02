@@ -1,21 +1,40 @@
 package com.example.ProyectoFinal.security;
 
-import com.example.ProyectoFinal.model.AppUser;
-import com.example.ProyectoFinal.model.AppUserRole;
+import com.example.ProyectoFinal.model.*;
+import com.example.ProyectoFinal.repository.IOdontologoRepository;
+import com.example.ProyectoFinal.repository.IPacienteRepository;
+import com.example.ProyectoFinal.repository.ITurnoRepository;
 import com.example.ProyectoFinal.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Value;
 import org.springframework.boot.ApplicationArguments;
 import org.springframework.boot.ApplicationRunner;
 import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 import org.springframework.stereotype.Component;
 
+import java.time.*;
+import java.time.temporal.ChronoUnit;
+import java.time.temporal.TemporalUnit;
+import java.util.ArrayList;
+import java.util.Date;
+import java.util.List;
+
 @Component
 public class DataLoader implements ApplicationRunner  {
     private UserRepository userRepository;
+    private IOdontologoRepository odontologoRepository;
+    private IPacienteRepository pacienteRepository;
+    private ITurnoRepository turnoRepository;
+
+    @Value("${custom.initializeData}")
+    private int initializeData;
 
     @Autowired
-    public DataLoader(UserRepository userRepository) {
+    public DataLoader(UserRepository userRepository, IOdontologoRepository odontologoRepository, IPacienteRepository pacienteRepository, ITurnoRepository turnoRepository) {
         this.userRepository = userRepository;
+        this.odontologoRepository = odontologoRepository;
+        this.pacienteRepository = pacienteRepository;
+        this.turnoRepository = turnoRepository;
     }
 
     public void run(ApplicationArguments args) {
@@ -25,6 +44,42 @@ public class DataLoader implements ApplicationRunner  {
         String password2 = passwordEncoder2.encode("sa");
         userRepository.save(new AppUser("Agustina", "agustina", "agustina@digital.com", password, AppUserRole.ROLE_ADMIN));
         userRepository.save(new AppUser("Emiliano", "emiliano", "emiliano@digital.com", password2, AppUserRole.ROLE_USER));
+        crearTurnos(LocalDateTime.now(), LocalDateTime.now().plusDays(5));
+        if(initializeData == 1) {
+            //Creacion de odontologos ejemplo
+            odontologoRepository.save(new Odontologo("Hernandez", "Agustina", "879456"));
+            odontologoRepository.save(new Odontologo("Lopez", "Javier", "123658"));
+            //Creacion de pacientes ejemplo
+            pacienteRepository.save(new Paciente("Martinez", "Alberto", new Direccion("Av. Montes de Oca", "459", "CABA","Buenos Aires"),"25478945"));
+            pacienteRepository.save(new Paciente("Martinez", "Leandro", new Direccion("Av. Montes de Oca", "459", "CABA","Buenos Aires"),"32124543"));
+            pacienteRepository.save(new Paciente("Ramirez", "Juan", new Direccion("Av. Santa Fe", "4217", "CABA","Buenos Aires"),"38784547"));
+            pacienteRepository.save(new Paciente("Fernandez", "Agustina", new Direccion("Vicente Lopez", "1354", "CABA","Buenos Aires"),"39874578"));
+            pacienteRepository.save(new Paciente("Gonzalez", "Lucia", new Direccion("Av. Pavon", "3654", "Avellaneda","Buenos Aires"),"36457878"));
+            pacienteRepository.save(new Paciente("Martinez", "Maria", new Direccion("El Pato", "147", "Cordoba","Cordoba"),"35478745"));
+            //Creacion de turnos ejemplo
+
+        }
     }
 
-}
+    public void crearTurnos(LocalDateTime fechaDesde, LocalDateTime fechaHasta) {
+        ZoneId zoneId = ZoneId.systemDefault();
+
+        ZonedDateTime dateTimeDesde = fechaDesde.atZone(zoneId);
+        ZonedDateTime dateTimeHasta = fechaHasta.atZone(zoneId);
+
+        List<Date> fechas = new ArrayList<>();
+        ZonedDateTime dateTimeActual = dateTimeDesde;
+        while (!dateTimeActual.isAfter(dateTimeHasta)) {
+            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).plusHours(1);
+            Date date = Date.from(roundedDateTime.toInstant());
+            fechas.add(date);
+            dateTimeActual = dateTimeActual.plusHours(1);
+        }
+
+        for (Date fecha : fechas) {
+            Turno turno = new Turno(fecha, null, null);
+            turnoRepository.save(turno);
+        }
+    }
+
+    }

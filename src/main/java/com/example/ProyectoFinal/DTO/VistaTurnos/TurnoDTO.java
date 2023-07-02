@@ -1,10 +1,7 @@
-package com.example.ProyectoFinal.DTO;
+package com.example.ProyectoFinal.DTO.VistaTurnos;
 
-import com.example.ProyectoFinal.model.Odontologo;
-import com.example.ProyectoFinal.model.Paciente;
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 
-import java.time.LocalDate;
 import java.util.Date;
 
 @JsonIgnoreProperties(ignoreUnknown = true)
@@ -12,15 +9,15 @@ public class TurnoDTO {
     private Long Id;
     private Date fecha;
 
-    private PacienteDTO paciente;
+    private PacienteDTO pacienteDTO;
 
-    private OdontologoDTO odontologo;
+    private OdontologoDTO odontologoDTO;
 
-    public TurnoDTO(Long Id,Date fecha, PacienteDTO paciente, OdontologoDTO odontologo) {
+    public TurnoDTO(Long Id, Date fecha, PacienteDTO pacienteDTO, OdontologoDTO odontologoDTO) {
         this.Id = Id;
         this.fecha = fecha;
-        this.paciente = paciente;
-        this.odontologo = odontologo;
+        this.pacienteDTO = pacienteDTO;
+        this.odontologoDTO = odontologoDTO;
     }
 
     public TurnoDTO() {
@@ -43,18 +40,18 @@ public class TurnoDTO {
     }
 
     public PacienteDTO getPaciente() {
-        return paciente;
+        return pacienteDTO;
     }
 
-    public void setPaciente(PacienteDTO paciente) {
-        this.paciente = paciente;
+    public void setPaciente(PacienteDTO pacienteDTO) {
+        this.pacienteDTO = pacienteDTO;
     }
 
     public OdontologoDTO getOdontologo() {
-        return odontologo;
+        return odontologoDTO;
     }
 
-    public void setOdontologo(OdontologoDTO odontologo) {
-        this.odontologo = odontologo;
+    public void setOdontologo(OdontologoDTO odontologoDTO) {
+        this.odontologoDTO = odontologoDTO;
     }
 }

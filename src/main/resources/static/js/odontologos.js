@@ -15,12 +15,12 @@ function construirTablaOdontologos(response){
 
             let delete_Btn = '<button' +
                                   ' id=' + '\"' + 'btn_id_' + odontologo.id + '\"' +
-                                  ' type="button"' + 'onclick=' + 'borrarOdontologo(' + odontologo.id + ') "class="btn btn-info btn_id">' +
+                                  ' type="button"' + 'onclick=' + 'deleteOdontologo(' + odontologo.id + ') "class="btn btn-info btn_id">' +
                                   "Eliminar" +
                                   '</button>';
 
             let tr_id = 'tr_' + odontologo.id;
-            let odontologoRow = '<tr id=\"' + tr_id + "\"" + '>' +
+            let odontologoRow = '<tr id=\"' + tr_id + "\"" + ' class="rowData">' +
                       '<td>' + get_More_Info_Btn + delete_Btn + '</td>' +
                       '<td>' + odontologo.nombre.toUpperCase() + '</td>' +
                       '<td>' + odontologo.apellido.toUpperCase() + '</td>' +
@@ -50,25 +50,16 @@ function agregarOdontologo(response){
 function deleteOdontologo(id){
     let url = "/api/odontologos/" + id;
     let method = "DELETE";
-    let data = {
-        "apellido":"",
-        "nombre":"",
-        "matricula":""
-    };
+    let data = null;
     apiCall(url, method, data, eliminarOdontologo);
 }
 
 function eliminarOdontologo(response){
-    response.forEach(odontologo => {
-
-        let tr_id = 'tr_' + odontologo.id;
-        let odontologoRow = '<tr id=\"' + tr_id + "\"" + '>' +
-                              '<td>' + get_More_Info_Btn + delete_Btn + '</td>' +
-                              '<td>' + odontologo.nombre.toUpperCase() + '</td>' +
-                              '<td>' + odontologo.apellido.toUpperCase() + '</td>' +
-                              '<td>' + odontologo.matricula + '</td>' +
-                              '</tr>';
-                    $('#odontologoTable tbody').append(odontologoRow);
-
-    })
+    if (response == true) {
+       mostrarToast("Odontologo eliminado con éxito", "success");
+       $('#odontologoTable tr.rowData').remove();
+       getOdontologos();
+    }else{
+        mostrarToast("Error al eliminar un odontologo.", "error");
+    }
 }

@@ -1,4 +1,4 @@
-package com.example.ProyectoFinal.DTO;
+package com.example.ProyectoFinal.DTO.VistaOdontologos;
 
 import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
 

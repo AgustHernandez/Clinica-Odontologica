@@ -1,6 +1,6 @@
 package com.example.ProyectoFinal.services.interfaces;
 
-import com.example.ProyectoFinal.DTO.OdontologoDTO;
+import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
 import com.example.ProyectoFinal.model.Odontologo;
 
 import java.util.List;

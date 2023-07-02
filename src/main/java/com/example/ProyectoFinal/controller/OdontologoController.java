@@ -1,6 +1,6 @@
 package com.example.ProyectoFinal.controller;
 
-import com.example.ProyectoFinal.DTO.OdontologoDTO;
+import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.services.interfaces.IOdontologoServ;
 import org.springframework.beans.factory.annotation.Autowired;

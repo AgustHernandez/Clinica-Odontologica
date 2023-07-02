@@ -6,6 +6,9 @@
     <link th:href="@{/css/style.css}" rel="stylesheet" />
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/toastify-js/src/toastify.min.css">
+    <script src="https://cdn.jsdelivr.net/npm/toastify-js"></script>
+    <script type="text/javascript" th:src="@{/js/common.js}"></script>
     <script type="text/javascript" th:src="@{/js/api.js}"></script>
     <script type="text/javascript" th:src="@{/js/odontologos.js}"></script>
     <title>Odontologos</title>
@@ -38,6 +41,15 @@
             </table>
         </section>
     </main>
+    <div id="popupModificacion" class="overlay">
+        <div class="popup">
+            <h2>Modificar odontologoDTO</h2>
+            <a class="close" href="#">&times;</a>
+            <div class="content">
+                Contenido del Popup
+            </div>
+        </div>
+    </div>
 </body>
 </html>
 

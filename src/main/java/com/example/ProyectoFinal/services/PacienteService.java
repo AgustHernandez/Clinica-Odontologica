@@ -1,9 +1,7 @@
 package com.example.ProyectoFinal.services;
 
-import com.example.ProyectoFinal.DTO.OdontologoDTO;
-import com.example.ProyectoFinal.DTO.PacienteDTO;
+import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
 import com.example.ProyectoFinal.datos.interfaces.IDao;
-import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.model.Paciente;
 import com.example.ProyectoFinal.services.interfaces.IPacienteServ;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -34,15 +32,15 @@ public class PacienteService implements IPacienteServ {
     @Override
     public PacienteDTO agregarPaciente(Paciente paciente) {
         Paciente agregarPaciente = pacienteDao.agregar(paciente);
-        PacienteDTO agregarPacienteDTO = mapper.convertValue(agregarPaciente,PacienteDTO.class);
-        return agregarPacienteDTO;
+        PacienteDTO agregarPacienteDTODTO = mapper.convertValue(agregarPaciente, PacienteDTO.class);
+        return agregarPacienteDTODTO;
     }
 
     @Override
     public PacienteDTO buscarPaciente(Long id) {
         Paciente buscarPaciente = pacienteDao.buscar(id);
-        PacienteDTO buscarPacienteDTO = mapper.convertValue(buscarPaciente,PacienteDTO.class);
-        return buscarPacienteDTO;
+        PacienteDTO buscarPacienteDTODTO = mapper.convertValue(buscarPaciente, PacienteDTO.class);
+        return buscarPacienteDTODTO;
     }
 
     @Override

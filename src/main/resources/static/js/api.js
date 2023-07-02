@@ -14,7 +14,7 @@ function apiCall (url, method, data, successFunc)
           successFunc(response);
         },
         error : function(e) {
-          alert("ERROR: ", e);0
+          mostrarToast("Error", "error");
           console.log("ERROR: ", e);
         }
     });

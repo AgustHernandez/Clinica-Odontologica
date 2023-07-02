@@ -1,7 +1,6 @@
 package com.example.ProyectoFinal.controller;
 
-import com.example.ProyectoFinal.DTO.TurnoDTO;
-import com.example.ProyectoFinal.model.Turno;
+import com.example.ProyectoFinal.DTO.VistaTurnos.TurnoDTO;
 import com.example.ProyectoFinal.services.interfaces.ITurnoServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -34,7 +33,7 @@ public class TurnoController {
     }
 
     @PostMapping("/turnos")
-    public ResponseEntity<TurnoDTO> agregarTurno(@RequestBody Turno turno) {
+    public ResponseEntity<TurnoDTO> agregarTurno(@RequestBody com.example.ProyectoFinal.model.Turno turno) {
         TurnoDTO result = turnoService.agregarTurno(turno);
         if(result == null)
             return ResponseEntity.badRequest().build();
@@ -42,7 +41,7 @@ public class TurnoController {
     }
 
     @PutMapping("/turnos")
-    public Turno modificarTurno(@RequestBody Turno turno) {
+    public com.example.ProyectoFinal.model.Turno modificarTurno(@RequestBody com.example.ProyectoFinal.model.Turno turno) {
         return turnoService.modificarTurno(turno);
     }
 

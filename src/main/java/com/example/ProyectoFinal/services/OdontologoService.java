@@ -1,6 +1,6 @@
 package com.example.ProyectoFinal.services;
 
-import com.example.ProyectoFinal.DTO.OdontologoDTO;
+import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
 import com.example.ProyectoFinal.datos.interfaces.IDao;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.services.interfaces.IOdontologoServ;

@@ -29,13 +29,13 @@ public class Odontologo {
         this.apellido = apellido;
         this.nombre = nombre;
         this.matricula = matricula;
-        crearTurnos(LocalDateTime.now(), LocalDateTime.now().plusDays(5));
+        crearAgenda(LocalDateTime.now(), LocalDateTime.now().plusDays(5));
     }
 
     public Odontologo() {
     }
 
-    private void crearTurnos(LocalDateTime fechaDesde, LocalDateTime fechaHasta) {
+    private void crearAgenda(LocalDateTime fechaDesde, LocalDateTime fechaHasta) {
         this.turnos = new HashSet<Turno>();
         ZoneId zoneId = ZoneId.systemDefault();
 

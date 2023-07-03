@@ -31,12 +31,68 @@
       <section>
         <h2>Pacientes</h2>
         <div class="botonesSection">
-            <button>Buscar pacientes</button>
-            <button><a href="pacientes/alta">Agregar nuevo</a></button>
+            <button class="botonesGenerales">Buscar pacientes</button>
+            <button class="botonesGenerales" data-bs-toggle="modal" data-bs-target="#agregarModal">Agregar nuevo</button>
+            <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
+                <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="agregarModalLabel">Agregar paciente</h5>
+                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+                        </div>
+                        <div class="modal-body">
+                            <form id="add_new_paciente">
+                                <div class="form-group">
+                                    <label class="form-label" for="nombre">Nombre:</label>
+                                    <input type="text" class="form-control" id="nombre"
+                                           placeholder="Ingrese el nombre" name="nombre" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="apellido">Apellido:</label>
+                                    <input type="text" class="form-control" id="apellido"
+                                           placeholder="Ingrese la apellido" name="apellido" required>
+                                </div>
+                                <div class="form-group">
+                                    <label class="control-label" for="dni">DNI:</label>
+                                    <input type="number" class="form-control" id="dni"
+                                           placeholder="Ingrese su DNI" name="dni">
+                                </div>
+                                <div>
+                                    <h5>Dirección:</h5>
+                                    <div class="form-group">
+                                        <label class="control-label" for="calle">Calle:</label>
+                                        <input type="text" class="form-control" id="calle"
+                                               placeholder="Ingrese la calle" name="calle" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="altura">Altura:</label>
+                                        <input type="text" class="form-control" id="altura"
+                                               placeholder="Ingrese la altura" name="altura" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="localidad">Localidad:</label>
+                                        <input type="text" class="form-control" id="localidad"
+                                               placeholder="Ingrese la localidad" name="localidad" required>
+                                    </div>
+                                    <div class="form-group">
+                                        <label class="control-label" for="provincia">Provincia:</label>
+                                        <input type="text" class="form-control" id="provincia"
+                                               placeholder="Ingrese la provincia" name="provincia">
+                                    </div>
+                                </div>
+                            </form>
+                        </div>
+                        <div class="modal-footer">
+                            <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                            <button onclick="postPaciente()" id="btn-add-new-pacienteDTO" class="btn btn-primary">Guardar cambios</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
         </div>
         <table class="table table-hover align-middle" id="pacienteTable">
               <tr>
-                  <th scope="col">Acciones</th>
+                  <th width="20%">Acciones</th>
                   <th scope="col">Nombre</th>
                   <th scope="col">Apellido</th>
                   <th scope="col">Documento</th>
@@ -45,50 +101,50 @@
         </table>
       </section>
     </main>
-    <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal fade" id="modificarModal" tabindex="-1" aria-labelledby="modificarModalLabel" aria-hidden="true">
         <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="exampleModalLabel">Modificar paciente</h5>
+                    <h5 class="modal-title" id="modificarModalLabel">Modificar paciente</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
                     <form id="add_new_paciente">
-                        <div>
+                        <div class="form-group">
                             <label class="form-label" for="nombre">Nombre:</label>
-                            <input type="text" class="form-control" id="nombre"
+                            <input type="text" class="form-control" id="nombreModificado"
                                    placeholder="Ingrese el nombre" name="nombre" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="apellido">Apellido:</label>
-                            <input type="text" class="form-control" id="apellido"
+                            <input type="text" class="form-control" id="apellidoModificado"
                                    placeholder="Ingrese la apellido" name="apellido" required>
                         </div>
                         <div class="form-group">
                             <label class="control-label" for="dni">DNI:</label>
-                            <input type="number" class="form-control" id="dni"
+                            <input type="number" class="form-control" id="dniModificado"
                                    placeholder="Ingrese su DNI" name="dni">
                         </div>
                         <div>
                             <h5>Dirección:</h5>
                             <div class="form-group">
                                 <label class="control-label" for="calle">Calle:</label>
-                                <input type="text" class="form-control" id="calle"
+                                <input type="text" class="form-control" id="calleModificado"
                                        placeholder="Ingrese la calle" name="calle" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="altura">Altura:</label>
-                                <input type="text" class="form-control" id="altura"
+                                <input type="text" class="form-control" id="alturaModificado"
                                        placeholder="Ingrese la altura" name="altura" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="localidad">Localidad:</label>
-                                <input type="text" class="form-control" id="localidad"
+                                <input type="text" class="form-control" id="localidadModificado"
                                        placeholder="Ingrese la localidad" name="localidad" required>
                             </div>
                             <div class="form-group">
                                 <label class="control-label" for="provincia">Provincia:</label>
-                                <input type="text" class="form-control" id="provincia"
+                                <input type="text" class="form-control" id="provinciaModificado"
                                        placeholder="Ingrese la provincia" name="provincia">
                             </div>
                         </div>

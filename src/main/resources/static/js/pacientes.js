@@ -9,13 +9,13 @@ function construirTablaPacientes(response){
     response.forEach(paciente => {
             let get_More_Info_Btn = '<button' +
                                         ' id=' + '\"' + 'btn_id_' + paciente.id + '\"' +
-                                        ' type="button" data-bs-toggle="modal" data-bs-target="#exampleModal"' + 'onclick=' + 'datosPaciente(' + paciente.id + ') class=" btnModificar btn_id">' +
+                                        ' type="button" data-bs-toggle="modal" data-bs-target="#modificarModal"' + 'onclick=' + 'datosPaciente(' + paciente.id + ') class="btnAcciones btn_id">' +
                                         "Modificar" +
                                         '</button>';
 
             let delete_Btn = '<button' +
                                  ' id=' + '\"' + 'btn_id_' + paciente.id + '\"' +
-                                 ' type="button"' + 'onclick=' + 'deletePaciente(' + paciente.id + ') "class="btn_id">' +
+                                 ' type="button"' + 'onclick=' + 'deletePaciente(' + paciente.id + ') class="btnAcciones btn_id">' +
                                  "Eliminar" +
                                  '</button>';
 
@@ -57,7 +57,10 @@ function agregarPaciente(response){
     document.getElementById("localidad").value = "";
     document.getElementById("provincia").value = "";
 
-    mostrarToast("Paciente eliminado con éxito", "success");
+    mostrarToast("Paciente agregado con éxito", "success");
+    $('#agregarModal').modal('hide');
+    $('#pacienteTable tr.rowData').remove();
+    getPacientes();
 }
 
 function putPaciente(id){
@@ -65,14 +68,14 @@ function putPaciente(id){
     let method = "PUT";
     let data = {
             "id":id,
-            "apellido":document.getElementById("apellido").value,
-            "nombre":document.getElementById("nombre").value,
-            "dni":document.getElementById("dni").value,
+            "apellido":document.getElementById("apellidoModificado").value,
+            "nombre":document.getElementById("nombreModificado").value,
+            "dni":document.getElementById("dniModificado").value,
             "direccion": {
-                  "calle":document.getElementById("calle").value,
-                  "altura":document.getElementById("altura").value,
-                  "localidad":document.getElementById("localidad").value,
-                  "provincia":document.getElementById("provincia").value,
+                  "calle":document.getElementById("calleModificado").value,
+                  "altura":document.getElementById("alturaModificado").value,
+                  "localidad":document.getElementById("localidadModificado").value,
+                  "provincia":document.getElementById("provinciaModificado").value,
        }
     };
     apiCall(url, method, data, modificarPaciente);
@@ -80,7 +83,7 @@ function putPaciente(id){
 
 function modificarPaciente(response) {
     mostrarToast("Paciente modificado con éxito", "success");
-    $('#exampleModal').modal('hide');
+    $('#modificarModal').modal('hide');
     $('#pacienteTable tr.rowData').remove();
     getPacientes();
 }
@@ -93,13 +96,13 @@ function datosPaciente(id){
 }
 
 function construirModalModificar(response) {
-    document.getElementById("apellido").value = response.apellido;
-    document.getElementById("nombre").value = response.nombre;
-    document.getElementById("dni").value = response.dni;
-    document.getElementById("calle").value = response.direccion.calle;
-    document.getElementById("altura").value = response.direccion.altura;
-    document.getElementById("localidad").value = response.direccion.localidad;
-    document.getElementById("provincia").value = response.direccion.provincia;
+    document.getElementById("apellidoModificado").value = response.apellido;
+    document.getElementById("nombreModificado").value = response.nombre;
+    document.getElementById("dniModificado").value = response.dni;
+    document.getElementById("calleModificado").value = response.direccion.calle;
+    document.getElementById("alturaModificado").value = response.direccion.altura;
+    document.getElementById("localidadModificado").value = response.direccion.localidad;
+    document.getElementById("provinciaModificado").value = response.direccion.provincia;
     document.getElementById("botonActualizarPaciente").onclick = function() {putPaciente(response.id)};
 }
 

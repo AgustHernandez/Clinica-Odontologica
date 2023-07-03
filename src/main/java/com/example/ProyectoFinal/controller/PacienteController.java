@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.controller;
 
 import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.services.interfaces.IPacienteServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class PacienteController {
     }
 
     @GetMapping("/pacientes/{id}")
-    public ResponseEntity<PacienteDTO> buscarPaciente(@PathVariable Long id) {
+    public ResponseEntity<PacienteDTO> buscarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         if (id == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
@@ -43,7 +44,7 @@ public class PacienteController {
     }
 
     @DeleteMapping("/pacientes/{id}")
-    public Boolean eliminarPaciente(@PathVariable Long id) {
+    public Boolean eliminarPaciente(@PathVariable Long id) throws ResourceNotFoundException {
         return pacienteService.eliminarPaciente(id);
     }
 }

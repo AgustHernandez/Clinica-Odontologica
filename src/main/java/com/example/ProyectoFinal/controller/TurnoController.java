@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.controller;
 
 import com.example.ProyectoFinal.DTO.VistaTurnos.TurnoDTO;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.services.interfaces.ITurnoServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -25,7 +26,7 @@ public class TurnoController {
     }
 
     @GetMapping("/turnos/{id}")
-    public ResponseEntity<TurnoDTO> buscarTurno(@PathVariable Long id) {
+    public ResponseEntity<TurnoDTO> buscarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         if (id == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
@@ -33,7 +34,7 @@ public class TurnoController {
     }
 
     @PostMapping("/turnos")
-    public ResponseEntity<TurnoDTO> agregarTurno(@RequestBody com.example.ProyectoFinal.model.Turno turno) {
+    public ResponseEntity<TurnoDTO> agregarTurno(@RequestBody com.example.ProyectoFinal.model.Turno turno) throws ResourceNotFoundException {
         TurnoDTO result = turnoService.agregarTurno(turno);
         if(result == null)
             return ResponseEntity.badRequest().build();
@@ -46,7 +47,7 @@ public class TurnoController {
     }
 
     @DeleteMapping("/turnos/{id}")
-    public Boolean eliminarTurno(@PathVariable Long id) {
+    public Boolean eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
         return turnoService.eliminarTurno(id);
     }
 

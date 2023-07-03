@@ -1,14 +1,15 @@
 package com.example.ProyectoFinal.services.interfaces;
 
 import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 
 import java.util.List;
 
 public interface IPacienteServ {
 
     List<PacienteDTO> listarPacientes();
-    PacienteDTO buscarPaciente(Long id);
+    PacienteDTO buscarPaciente(Long id) throws ResourceNotFoundException;
     PacienteDTO agregarPaciente(com.example.ProyectoFinal.model.Paciente paciente);
     com.example.ProyectoFinal.model.Paciente modificarPaciente(com.example.ProyectoFinal.model.Paciente paciente);
-    Boolean eliminarPaciente(Long id);
+    Boolean eliminarPaciente(Long id) throws ResourceNotFoundException;
 }

@@ -9,13 +9,13 @@ function construirTablaOdontologos(response){
     response.forEach(odontologo => {
             let get_More_Info_Btn = '<button' +
                                          ' id=' + '\"' + 'btn_id_' + odontologo.id + '\"' +
-                                         ' type="button" class="btn btn-info btn_id">' +
+                                         ' type="button" data-bs-toggle="modal" data-bs-target="#modificarModal"' + 'onclick=' + 'datosOdontologo(' + odontologo.id + ') class="btnAcciones btn_id">' +
                                          "Modificar" +
                                          '</button>';
 
             let delete_Btn = '<button' +
                                   ' id=' + '\"' + 'btn_id_' + odontologo.id + '\"' +
-                                  ' type="button"' + 'onclick=' + 'deleteOdontologo(' + odontologo.id + ') "class="btn btn-info btn_id">' +
+                                  ' type="button"' + 'onclick=' + 'deleteOdontologo(' + odontologo.id + ') class="btnAcciones btn_id">' +
                                   "Eliminar" +
                                   '</button>';
 
@@ -45,6 +45,44 @@ function agregarOdontologo(response){
     document.getElementById("apellido").value = "";
     document.getElementById("nombre").value = "";
     document.getElementById("matricula").value = "";
+
+    mostrarToast("Odontologo agregado con éxito", "success");
+    $('#agregarModal').modal('hide');
+    $('#odontologoTable tr.rowData').remove();
+    getOdontologos();
+}
+
+function putOdontologo(id){
+    let url = "/api/odontologos/";
+    let method = "PUT";
+    let data = {
+            "id":id,
+            "apellido":document.getElementById("apellidoModificado").value,
+            "nombre":document.getElementById("nombreModificado").value,
+            "matricula":document.getElementById("matriculaModificado").value
+    };
+    apiCall(url, method, data, modificarOdontologo);
+}
+
+function modificarOdontologo(response) {
+    mostrarToast("Odontologo modificado con éxito", "success");
+    $('#modificarModal').modal('hide');
+    $('#odontologoTable tr.rowData').remove();
+    getOdontologos();
+}
+
+function datosOdontologo(id){
+    let url = "/api/odontologos/" + id;
+    let method = "GET";
+    let data = null;
+    apiCall(url, method, data, construirModalModificar);
+}
+
+function construirModalModificar(response) {
+    document.getElementById("apellidoModificado").value = response.apellido;
+    document.getElementById("nombreModificado").value = response.nombre;
+    document.getElementById("matriculaModificado").value = response.matricula;
+    document.getElementById("botonActualizarOdontologo").onclick = function() {putOdontologo(response.id)};
 }
 
 function deleteOdontologo(id){

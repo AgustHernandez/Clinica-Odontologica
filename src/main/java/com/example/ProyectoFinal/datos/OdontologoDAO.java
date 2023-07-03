@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.datos;
 
 import com.example.ProyectoFinal.datos.interfaces.IDao;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.repository.IOdontologoRepository;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -30,18 +31,18 @@ public class OdontologoDAO implements IDao<Odontologo> {
     }
 
     @Override
-    public Odontologo modificar(Odontologo elemento) {
-        return null;
+    public Odontologo modificar(Odontologo odontologo) {
+        return odontologoRepository.save(odontologo);
     }
 
     @Override
-    public Boolean eliminar(Long id) {
-        odontologoRepository.deleteById(id);
+    public Boolean eliminar(Long id) throws ResourceNotFoundException {
+        odontologoRepository.delete(buscar(id));
         return true;
     }
 
     @Override
-    public Odontologo buscar(Long id)  throws NoSuchElementException {
+    public Odontologo buscar(Long id) throws ResourceNotFoundException {
         return odontologoRepository.findById(id).get();
     }
 }

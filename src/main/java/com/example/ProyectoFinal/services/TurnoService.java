@@ -2,6 +2,7 @@ package com.example.ProyectoFinal.services;
 
 import com.example.ProyectoFinal.DTO.VistaTurnos.TurnoDTO;
 import com.example.ProyectoFinal.datos.interfaces.IDao;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.model.Paciente;
 import com.example.ProyectoFinal.services.interfaces.ITurnoServ;
@@ -36,14 +37,14 @@ public class TurnoService implements ITurnoServ {
     }
 
     @Override
-    public TurnoDTO buscarTurno(Long id) {
+    public TurnoDTO buscarTurno(Long id) throws ResourceNotFoundException {
         com.example.ProyectoFinal.model.Turno buscarTurno = turnoDao.buscar(id);
         TurnoDTO buscarTurnoDTODTO = mapper.convertValue(buscarTurno, TurnoDTO.class);
         return buscarTurnoDTODTO;
     }
 
     @Override
-    public TurnoDTO agregarTurno(com.example.ProyectoFinal.model.Turno turno) {
+    public TurnoDTO agregarTurno(com.example.ProyectoFinal.model.Turno turno) throws ResourceNotFoundException {
         turno.setPaciente(pacienteIDao.buscar(turno.getPaciente().getId()));
         com.example.ProyectoFinal.model.Turno agregarTurno = turnoDao.agregar(turno);
         TurnoDTO agregarTurnoDTODTO = mapper.convertValue(agregarTurno, TurnoDTO.class);
@@ -56,7 +57,7 @@ public class TurnoService implements ITurnoServ {
     }
 
     @Override
-    public Boolean eliminarTurno(Long id) {
+    public Boolean eliminarTurno(Long id) throws ResourceNotFoundException {
         return turnoDao.eliminar(id);
     }
 }

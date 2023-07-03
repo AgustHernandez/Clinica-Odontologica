@@ -1,13 +1,17 @@
 package com.example.ProyectoFinal.controller;
 
 import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
+import com.example.ProyectoFinal.DTO.VistaTurnos.TurnoDTO;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.services.interfaces.IOdontologoServ;
+import com.example.ProyectoFinal.services.interfaces.ITurnoServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.Date;
 import java.util.List;
 
 @RestController
@@ -15,10 +19,12 @@ import java.util.List;
 public class OdontologoController {
 
     private IOdontologoServ odontologoService;
+    private ITurnoServ turnoService;
 
     @Autowired
-    public OdontologoController(IOdontologoServ odontologoService) {
+    public OdontologoController(IOdontologoServ odontologoService, ITurnoServ turnoService) {
         this.odontologoService = odontologoService;
+        this.turnoService = turnoService;
     }
 
     @GetMapping("/odontologos")
@@ -28,7 +34,7 @@ public class OdontologoController {
     }
 
     @GetMapping("/odontologos/{id}")
-    public ResponseEntity<OdontologoDTO> buscarOdontologos(@PathVariable Long id) {
+    public ResponseEntity<OdontologoDTO> buscarOdontologos(@PathVariable Long id) throws ResourceNotFoundException, NumberFormatException {
         if (id == null) {
             return new ResponseEntity<>(null, HttpStatus.BAD_REQUEST);
         }
@@ -46,7 +52,29 @@ public class OdontologoController {
     }
 
     @DeleteMapping("/odontologos/{id}")
-    public Boolean eliminarOdontologo(@PathVariable Long id) {
+    public Boolean eliminarOdontologo(@PathVariable Long id) throws ResourceNotFoundException, NumberFormatException {
         return odontologoService.eliminarOdontologo(id);
     }
+
+    /*@GetMapping("/odontologos/{id}/turnos")
+    public ResponseEntity<TurnoDTO> buscarTurno(@PathVariable Long id) throws ResourceNotFoundException {
+        return new ResponseEntity<>(turnoService.buscarTurno(id), HttpStatus.OK);
+    }
+
+    @PostMapping("/odontologos/{id}/turnos")
+    public ResponseEntity<TurnoDTO> agregarTurno(@PathVariable Long idOdontologo, @RequestBody Date fechaTurno) throws ResourceNotFoundException {
+        TurnoDTO result = turnoService.agregarTurno(turno);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @PutMapping("/odontologos/{id}/turnos")
+    public ResponseEntity<TurnoDTO> agregarTurno(@PathVariable Long idOdontologo, @RequestBody Date fechaTurno) throws ResourceNotFoundException {
+        TurnoDTO result = turnoService.agregarTurno(turno);
+        return new ResponseEntity<>(result,HttpStatus.OK);
+    }
+
+    @DeleteMapping("/turnos/{id}")
+    public Boolean eliminarTurno(@PathVariable Long id) throws ResourceNotFoundException {
+        return turnoService.eliminarTurno(id);
+    }*/
 }

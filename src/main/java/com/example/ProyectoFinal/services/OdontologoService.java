@@ -2,6 +2,7 @@ package com.example.ProyectoFinal.services;
 
 import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
 import com.example.ProyectoFinal.datos.interfaces.IDao;
+import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.services.interfaces.IOdontologoServ;
 import com.fasterxml.jackson.core.type.TypeReference;
@@ -38,7 +39,7 @@ public class OdontologoService implements IOdontologoServ {
     }
 
     @Override
-    public OdontologoDTO buscarOdontologo(Long id) {
+    public OdontologoDTO buscarOdontologo(Long id) throws ResourceNotFoundException {
         Odontologo buscarOdontologo = odontologoDao.buscar(id);
         OdontologoDTO buscarOdontologoDTO = mapper.convertValue(buscarOdontologo,OdontologoDTO.class);
         return buscarOdontologoDTO;
@@ -50,7 +51,7 @@ public class OdontologoService implements IOdontologoServ {
     }
 
     @Override
-    public Boolean eliminarOdontologo(Long id) {
+    public Boolean eliminarOdontologo(Long id) throws ResourceNotFoundException {
         return odontologoDao.eliminar(id);
     }
 }

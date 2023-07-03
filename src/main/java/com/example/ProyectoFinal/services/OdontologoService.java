@@ -46,8 +46,10 @@ public class OdontologoService implements IOdontologoServ {
     }
 
     @Override
-    public Odontologo modificarOdontologo(Odontologo odontologo) {
-        return odontologoDao.modificar(odontologo);
+    public OdontologoDTO modificarOdontologo(Odontologo odontologo) {
+        Odontologo odontologoModificado = odontologoDao.modificar(odontologo);
+        OdontologoDTO odontologoDTO = mapper.convertValue(odontologoModificado,OdontologoDTO.class);
+        return odontologoDTO;
     }
 
     @Override

@@ -2,6 +2,7 @@ package com.example.ProyectoFinal.controller;
 
 import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
+import com.example.ProyectoFinal.model.Paciente;
 import com.example.ProyectoFinal.services.interfaces.IPacienteServ;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
@@ -39,7 +40,7 @@ public class PacienteController {
     }
 
     @PutMapping("/pacientes")
-    public com.example.ProyectoFinal.model.Paciente modificarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) {
+    public PacienteDTO modificarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) {
         return pacienteService.modificarPaciente(paciente);
     }
 

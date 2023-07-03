@@ -14,28 +14,13 @@ public class NavigationController {
         return "odontologos";
     }
 
-    @GetMapping("/odontologos/alta")
-    public String odontologoAlta() {
-        return "altaOdontologo";
-    }
-
     @GetMapping("/pacientes")
     public String pacientes() {
         return "pacientes";
     }
 
-    @GetMapping("/pacientes/alta")
-    public String pacienteAlta() {
-        return "altaPaciente";
-    }
-
     @GetMapping("/turnos")
     public String turnos() {
         return "turnos";
-    }
-
-    @GetMapping("/turnos/alta")
-    public String turnoAlta() {
-        return "altaTurno";
     }
 }

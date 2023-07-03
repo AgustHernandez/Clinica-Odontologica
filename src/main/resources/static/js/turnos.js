@@ -1,7 +1,9 @@
 function getTurnos(){
-    let url = "/api/turnos";
-    let method = "GET";
-    let data = null;
+    let url = "/api/odontologos/1/turnos";
+    let method = "PUT";
+    let data = {
+                   "fecha": "2023-08-12T18:40:46.300+00:00"
+               };
     apiCall(url, method, data, construirTablaTurnos);
 }
 

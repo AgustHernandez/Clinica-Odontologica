@@ -45,8 +45,10 @@ public class PacienteService implements IPacienteServ {
     }
 
     @Override
-    public Paciente modificarPaciente(Paciente paciente) {
-        return pacienteDao.modificar(paciente);
+    public PacienteDTO modificarPaciente(Paciente paciente) {
+        Paciente pacienteModificado = pacienteDao.modificar(paciente);
+        PacienteDTO pacienteDTO = mapper.convertValue(pacienteModificado, PacienteDTO.class);
+        return pacienteDTO;
     }
 
     @Override

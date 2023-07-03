@@ -45,7 +45,7 @@ public class Odontologo {
         List<Date> fechas = new ArrayList<>();
         ZonedDateTime dateTimeActual = dateTimeDesde;
         while (!dateTimeActual.isAfter(dateTimeHasta)) {
-            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).plusHours(1);
+            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).withNano(0).plusHours(1);
             Date date = Date.from(roundedDateTime.toInstant());
             fechas.add(date);
             dateTimeActual = dateTimeActual.plusHours(1);

@@ -11,13 +11,10 @@ public class TurnoDTO {
 
     private PacienteDTO pacienteDTO;
 
-    private OdontologoDTO odontologoDTO;
-
-    public TurnoDTO(Long Id, Date fecha, PacienteDTO pacienteDTO, OdontologoDTO odontologoDTO) {
+    public TurnoDTO(Long Id, Date fecha, PacienteDTO pacienteDTO) {
         this.Id = Id;
         this.fecha = fecha;
         this.pacienteDTO = pacienteDTO;
-        this.odontologoDTO = odontologoDTO;
     }
 
     public TurnoDTO() {
@@ -45,13 +42,5 @@ public class TurnoDTO {
 
     public void setPaciente(PacienteDTO pacienteDTO) {
         this.pacienteDTO = pacienteDTO;
-    }
-
-    public OdontologoDTO getOdontologo() {
-        return odontologoDTO;
-    }
-
-    public void setOdontologo(OdontologoDTO odontologoDTO) {
-        this.odontologoDTO = odontologoDTO;
     }
 }

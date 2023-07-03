@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.services.interfaces;
 
 import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
+import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Paciente;
 
@@ -10,7 +11,7 @@ public interface IPacienteServ {
 
     List<PacienteDTO> listarPacientes();
     PacienteDTO buscarPaciente(Long id) throws ResourceNotFoundException;
-    PacienteDTO agregarPaciente(Paciente paciente);
-    PacienteDTO modificarPaciente(Paciente paciente);
+    PacienteDTO agregarPaciente(Paciente paciente) throws ElementAlreadyExistsException;
+    PacienteDTO modificarPaciente(Paciente paciente) throws ResourceNotFoundException;
     Boolean eliminarPaciente(Long id) throws ResourceNotFoundException;
 }

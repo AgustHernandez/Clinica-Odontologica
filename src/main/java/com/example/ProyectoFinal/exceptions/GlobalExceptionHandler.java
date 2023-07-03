@@ -20,6 +20,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(ElementAlreadyExistsException.class)
+    public ResponseEntity<?> elementAlreadyExistsException(ElementAlreadyExistsException ex, WebRequest request)
+    {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.BAD_REQUEST);
+    }
+
     @ExceptionHandler(NumberFormatException.class)
     public ResponseEntity<?> numberFormatException(NumberFormatException ex, WebRequest request)
     {

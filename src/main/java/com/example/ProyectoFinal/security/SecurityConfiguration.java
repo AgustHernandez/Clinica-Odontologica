@@ -5,6 +5,7 @@ import com.example.ProyectoFinal.services.AppUserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
+import org.springframework.http.HttpMethod;
 import org.springframework.security.authentication.dao.DaoAuthenticationProvider;
 import org.springframework.security.config.annotation.authentication.builders.AuthenticationManagerBuilder;
 import org.springframework.security.config.annotation.web.builders.HttpSecurity;
@@ -26,34 +27,13 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
         http
                 .csrf().disable()
                 .authorizeRequests()
-                .antMatchers("/turnos/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/pacientes/**", "/odontologos/**").hasRole("ADMIN")
-                .antMatchers("/api/**").permitAll()
+                .antMatchers(HttpMethod.GET, "/api/odontologos/**","/api/pacientes/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/turnos/**","/api/odontologos/**/turnos/**").hasAnyRole("USER", "ADMIN")
+                .antMatchers("/pacientes/**","/api/pacientes/**", "/odontologos/**","/api/odontologos/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated().and()
                 .httpBasic().and()
                 .formLogin();
-
-
-        /*http.cors().and().csrf().disable()
-                .authorizeRequests()
-                .antMatchers("/Turnos/**").hasAnyRole("USER", "ADMIN")
-                .antMatchers("/Pacientes/**", "/Odontologos/**").hasRole("ADMIN")
-                .anyRequest()
-                .authenticated()
-                .and()
-                .httpBasic()
-                .and()
-                .formLogin()
-                .and()
-                .logout().logoutUrl("/logout").logoutSuccessUrl("/index");
-                /*.csrf().disable()
-                .authorizeRequests()
-//                .antMatchers("/user/**")
-//                .permitAll()
-                .anyRequest()
-                .authenticated().and()
-                .formLogin();*/
     }
 
     @Override

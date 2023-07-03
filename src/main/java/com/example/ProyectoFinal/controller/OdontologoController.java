@@ -2,6 +2,7 @@ package com.example.ProyectoFinal.controller;
 
 import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
 import com.example.ProyectoFinal.DTO.VistaTurnos.TurnoDTO;
+import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.InvalidRequestException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
@@ -44,12 +45,12 @@ public class OdontologoController {
     }
 
     @PostMapping("/odontologos")
-    public OdontologoDTO agregarOdontologos(@RequestBody Odontologo odontologo) {
+    public OdontologoDTO agregarOdontologos(@RequestBody Odontologo odontologo) throws ElementAlreadyExistsException {
         return odontologoService.agregarOdontologo(odontologo);
     }
 
     @PutMapping("/odontologos")
-    public OdontologoDTO modificarOdontologo(@RequestBody Odontologo odontologo) {
+    public OdontologoDTO modificarOdontologo(@RequestBody Odontologo odontologo) throws ResourceNotFoundException {
         return odontologoService.modificarOdontologo(odontologo);
     }
 

@@ -2,6 +2,7 @@ package com.example.ProyectoFinal.services;
 
 import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
 import com.example.ProyectoFinal.datos.interfaces.IDao;
+import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Paciente;
 import com.example.ProyectoFinal.services.interfaces.IPacienteServ;
@@ -31,7 +32,7 @@ public class PacienteService implements IPacienteServ {
     }
 
     @Override
-    public PacienteDTO agregarPaciente(Paciente paciente) {
+    public PacienteDTO agregarPaciente(Paciente paciente) throws ElementAlreadyExistsException {
         Paciente agregarPaciente = pacienteDao.agregar(paciente);
         PacienteDTO agregarPacienteDTODTO = mapper.convertValue(agregarPaciente, PacienteDTO.class);
         return agregarPacienteDTODTO;
@@ -45,7 +46,7 @@ public class PacienteService implements IPacienteServ {
     }
 
     @Override
-    public PacienteDTO modificarPaciente(Paciente paciente) {
+    public PacienteDTO modificarPaciente(Paciente paciente) throws ResourceNotFoundException {
         Paciente pacienteModificado = pacienteDao.modificar(paciente);
         PacienteDTO pacienteDTO = mapper.convertValue(pacienteModificado, PacienteDTO.class);
         return pacienteDTO;

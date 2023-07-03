@@ -2,6 +2,7 @@ package com.example.ProyectoFinal.services;
 
 import com.example.ProyectoFinal.DTO.VistaOdontologos.OdontologoDTO;
 import com.example.ProyectoFinal.datos.interfaces.IDao;
+import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.services.interfaces.IOdontologoServ;
@@ -32,7 +33,7 @@ public class OdontologoService implements IOdontologoServ {
     }
 
     @Override
-    public OdontologoDTO agregarOdontologo(Odontologo odontologo) {
+    public OdontologoDTO agregarOdontologo(Odontologo odontologo) throws ElementAlreadyExistsException {
         Odontologo agregarOdontologo = odontologoDao.agregar(odontologo);
         OdontologoDTO agregarOdontologoDTO = mapper.convertValue(agregarOdontologo,OdontologoDTO.class);
         return agregarOdontologoDTO;
@@ -46,7 +47,7 @@ public class OdontologoService implements IOdontologoServ {
     }
 
     @Override
-    public OdontologoDTO modificarOdontologo(Odontologo odontologo) {
+    public OdontologoDTO modificarOdontologo(Odontologo odontologo) throws ResourceNotFoundException {
         Odontologo odontologoModificado = odontologoDao.modificar(odontologo);
         OdontologoDTO odontologoDTO = mapper.convertValue(odontologoModificado,OdontologoDTO.class);
         return odontologoDTO;

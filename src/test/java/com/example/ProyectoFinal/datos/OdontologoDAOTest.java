@@ -1,5 +1,6 @@
 package com.example.ProyectoFinal.datos;
 
+import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
 import com.example.ProyectoFinal.repository.IOdontologoRepository;
@@ -40,7 +41,7 @@ public class OdontologoDAOTest {
     }
 
     @Test
-    public void testAgregar() {
+    public void testAgregar() throws ElementAlreadyExistsException {
         Odontologo odontologo = new Odontologo();
         when(odontologoRepository.save(odontologo)).thenReturn(odontologo);
 
@@ -51,7 +52,7 @@ public class OdontologoDAOTest {
     }
 
     @Test
-    public void testModificar() {
+    public void testModificar() throws ResourceNotFoundException {
         Odontologo odontologo = new Odontologo();
         when(odontologoRepository.save(odontologo)).thenReturn(odontologo);
 

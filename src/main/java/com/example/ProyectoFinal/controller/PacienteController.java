@@ -1,6 +1,7 @@
 package com.example.ProyectoFinal.controller;
 
 import com.example.ProyectoFinal.DTO.VistaPacientes.PacienteDTO;
+import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Paciente;
 import com.example.ProyectoFinal.services.interfaces.IPacienteServ;
@@ -35,12 +36,12 @@ public class PacienteController {
     }
 
     @PostMapping("/pacientes")
-    public PacienteDTO agregarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) {
+    public PacienteDTO agregarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) throws ElementAlreadyExistsException {
         return pacienteService.agregarPaciente(paciente);
     }
 
     @PutMapping("/pacientes")
-    public PacienteDTO modificarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) {
+    public PacienteDTO modificarPaciente(@RequestBody com.example.ProyectoFinal.model.Paciente paciente) throws ResourceNotFoundException {
         return pacienteService.modificarPaciente(paciente);
     }
 

@@ -25,7 +25,7 @@ public class DataLoader implements ApplicationRunner  {
     private ITurnoRepository turnoRepository;
 
     @Value("${custom.initializeData}")
-    private int initializeData;
+    private Boolean initializeData;
 
     @Autowired
     public DataLoader(UserRepository userRepository, IOdontologoRepository odontologoRepository, IPacienteRepository pacienteRepository, ITurnoRepository turnoRepository) {
@@ -42,7 +42,7 @@ public class DataLoader implements ApplicationRunner  {
         String password2 = passwordEncoder2.encode("sa");
         userRepository.save(new AppUser("Agustina", "agustina", "agustina@digital.com", password, AppUserRole.ROLE_ADMIN));
         userRepository.save(new AppUser("Emiliano", "emiliano", "emiliano@digital.com", password2, AppUserRole.ROLE_USER));
-        if(initializeData == 1) {
+        if(initializeData) {
             //Creacion de odontologos ejemplo
             odontologoRepository.save(new Odontologo("Hernandez", "Agustina", "879456"));
             odontologoRepository.save(new Odontologo("Lopez", "Javier", "123658"));

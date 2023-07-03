@@ -1,3 +1,40 @@
+
+function cargarPacientes(){
+    let url = "/api/pacientes";
+    let method = "GET";
+    let data = null;
+    apiCall(url, method, data, completarComboPacientes);
+}
+
+function completarComboPacientes(response)
+{
+    let combobox = document.getElementById("pacientesComboBox");
+    response.forEach(pacientes => {
+          var optionElement = document.createElement("option");
+             optionElement.value = pacientes.id;
+             optionElement.text = pacientes.apellido + " ," + pacientes.nombre;
+             combobox.appendChild(optionElement);
+        });
+}
+
+function cargarOdontologos(){
+    let url = "/api/odontologos";
+    let method = "GET";
+    let data = null;
+    apiCall(url, method, data, completarComboOdontologos);
+}
+
+function completarComboOdontologos(response)
+{
+    let combobox = document.getElementById("odontologosComboBox");
+    response.forEach(odontologo => {
+          var optionElement = document.createElement("option");
+             optionElement.value = odontologo.id;
+             optionElement.text = odontologo.apellido + " ," + odontologo.nombre;
+             combobox.appendChild(optionElement);
+        });
+}
+
 function getTurnos(){
     let url = "/api/odontologos/1/turnos";
     let method = "PUT";

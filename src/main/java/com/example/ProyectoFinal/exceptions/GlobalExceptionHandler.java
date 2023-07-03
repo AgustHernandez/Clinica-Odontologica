@@ -20,6 +20,12 @@ public class GlobalExceptionHandler {
         return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
     }
 
+    @ExceptionHandler(DuplicatedElementException.class)
+    public ResponseEntity<?> duplicatedElementException(DuplicatedElementException ex, WebRequest request)
+    {
+        return new ResponseEntity<>(ex.getMessage(), HttpStatus.NOT_FOUND);
+    }
+
     @ExceptionHandler(ElementAlreadyExistsException.class)
     public ResponseEntity<?> elementAlreadyExistsException(ElementAlreadyExistsException ex, WebRequest request)
     {

@@ -1,5 +1,6 @@
 package com.example.ProyectoFinal.datos;
 
+import com.example.ProyectoFinal.exceptions.DuplicatedElementException;
 import com.example.ProyectoFinal.exceptions.ElementAlreadyExistsException;
 import com.example.ProyectoFinal.exceptions.ResourceNotFoundException;
 import com.example.ProyectoFinal.model.Odontologo;
@@ -52,11 +53,11 @@ public class OdontologoDAOTest {
     }
 
     @Test
-    public void testModificar() throws ResourceNotFoundException {
+    public void testModificar() throws ResourceNotFoundException, DuplicatedElementException {
         Odontologo odontologo = new Odontologo();
         when(odontologoRepository.save(odontologo)).thenReturn(odontologo);
 
-        Odontologo resultado = odontologoDAO.modificar(odontologo);
+        Odontologo resultado = odontologoDAO.modificar(odontologo,false);
 
         assertEquals(odontologo, resultado);
         verify(odontologoRepository, times(1)).save(odontologo);

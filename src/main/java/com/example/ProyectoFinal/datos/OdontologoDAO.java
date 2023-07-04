@@ -53,12 +53,6 @@ public class OdontologoDAO implements IDao<Odontologo> {
             logger.error(ex.getMessage(),ex);
             throw ex;
         }
-        if(!saltearValidacionDuplicado && !odontologoRepository.findByMatricula(odontologo.getMatricula()).isEmpty())
-        {
-            DuplicatedElementException ex = new DuplicatedElementException("Ya existe un odontologo con la misma matricula.");
-            logger.error(ex.getMessage(),ex);
-            throw ex;
-        }
         try
         {
             logger.debug("El odontologo existe en la base de datos. Se procede con la modificación");

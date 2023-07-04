@@ -11,6 +11,7 @@ body {
     font-family: 'Raleway', sans-serif;
 }
 
+
 header {
     width: auto;
     height: 60px;
@@ -236,4 +237,15 @@ tr{
 
 .content {
   margin-top: 20px;
+}
+
+/* Turnos */
+
+.selectOdontologo {
+    margin: 20px 0px;
+    width: 300px;
+}
+
+option {
+    font-size: 1.2rem;
 }

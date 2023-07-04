@@ -22,16 +22,13 @@
               <a href="/pacientes">Pacientes</a>
               <a href="/turnos">Turnos</a>
           </div>
-        <div>
-          <h5>Hola persona !</h5>
-        </div>
+          <a href="/logout">Log Out</a>
       </nav>
     </header>
     <main>
       <section>
         <h2>Pacientes</h2>
         <div class="botonesSection">
-            <button class="botonesGenerales">Buscar pacientes</button>
             <button class="botonesGenerales" data-bs-toggle="modal" data-bs-target="#agregarModal">Agregar nuevo</button>
             <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
                 <div class="modal-dialog modal-dialog-centered modal-dialog-scrollable">
@@ -55,7 +52,7 @@
                                 <div class="form-group">
                                     <label class="control-label" for="dni">DNI:</label>
                                     <input type="number" class="form-control" id="dni"
-                                           placeholder="Ingrese su DNI" name="dni">
+                                           placeholder="Ingrese su DNI" name="dni" >
                                 </div>
                                 <div>
                                     <h5>Dirección:</h5>
@@ -66,7 +63,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label" for="altura">Altura:</label>
-                                        <input type="text" class="form-control" id="altura"
+                                        <input type="number" class="form-control" id="altura"
                                                placeholder="Ingrese la altura" name="altura" required>
                                     </div>
                                     <div class="form-group">
@@ -123,7 +120,7 @@
                         <div class="form-group">
                             <label class="control-label" for="dni">DNI:</label>
                             <input type="number" class="form-control" id="dniModificado"
-                                   placeholder="Ingrese su DNI" name="dni">
+                                   placeholder="Ingrese su DNI" name="dni" readonly>
                         </div>
                         <div>
                             <h5>Dirección:</h5>

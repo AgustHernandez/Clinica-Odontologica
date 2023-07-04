@@ -22,16 +22,13 @@
                 <a href="/pacientes">Pacientes</a>
                 <a href="/turnos">Turnos</a>
             </div>
-            <div>
-                <h5>Hola persona !</h5>
-            </div>
+            <a href="/logout">Log Out</a>
         </nav>
     </header>
     <main>
         <section>
             <h2>Odontologos</h2>
             <div class="botonesSection">
-                <button class="botonesGenerales">Buscar odontologos</button>
                 <button class="botonesGenerales" data-bs-toggle="modal" data-bs-target="#agregarModal">Agregar nuevo</button>
                 <div class="modal fade" id="agregarModal" tabindex="-1" aria-labelledby="agregarModalLabel" aria-hidden="true">
                     <div class="modal-dialog">
@@ -54,7 +51,7 @@
                                     </div>
                                     <div class="form-group">
                                         <label class="control-label" for="matricula">Matricula:</label>
-                                        <input type="text" class="form-control" id="matricula"
+                                        <input type="number" class="form-control" id="matricula"
                                                placeholder="Ingrese matricula" name="matricula">
                                     </div>
                                 </form>
@@ -99,7 +96,7 @@
                         <div class="form-group">
                             <label class="control-label" for="matricula">Matricula:</label>
                             <input type="text" class="form-control" id="matriculaModificado"
-                                   placeholder="Ingrese matricula" name="matricula">
+                                   placeholder="Ingrese matricula" name="matricula" readonly>
                         </div>
                     </form>
                 </div>

@@ -23,4 +23,9 @@ public class NavigationController {
     public String turnos() {
         return "turnos";
     }
+
+    @GetMapping("/403")
+    public String accessDenied() {
+        return "accesoDenegado";
+    }
 }

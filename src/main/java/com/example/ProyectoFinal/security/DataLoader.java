@@ -40,8 +40,8 @@ public class DataLoader implements ApplicationRunner  {
         String password = passwordEncoder.encode("sa");
         BCryptPasswordEncoder passwordEncoder2 = new BCryptPasswordEncoder();
         String password2 = passwordEncoder2.encode("sa");
-        userRepository.save(new AppUser("Agustina", "agustina", "agustina@digital.com", password, AppUserRole.ROLE_ADMIN));
-        userRepository.save(new AppUser("Emiliano", "emiliano", "emiliano@digital.com", password2, AppUserRole.ROLE_USER));
+        userRepository.save(new AppUser("Admin", "Admin", "admin@digital.com", password, AppUserRole.ROLE_ADMIN));
+        userRepository.save(new AppUser("User", "User", "user@digital.com", password2, AppUserRole.ROLE_USER));
         if(initializeData) {
             //Creacion de odontologos ejemplo
             odontologoRepository.save(new Odontologo("Hernandez", "Agustina", "879456"));

@@ -50,12 +50,6 @@ public class PacienteDAO implements IDao<Paciente> {
             logger.error(ex.getMessage(),ex);
             throw ex;
         }
-        if(!pacienteRepository.findByDni(paciente.getDNI()).isEmpty())
-        {
-            DuplicatedElementException ex = new DuplicatedElementException("Ya existe un paciente con el mismo DNI");
-            logger.error(ex.getMessage(),ex);
-            throw ex;
-        }
         try
         {
             logger.debug("El paciente existe en la base de datos. Se procede con la modificación");

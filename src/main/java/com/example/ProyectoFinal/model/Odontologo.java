@@ -29,10 +29,11 @@ public class Odontologo {
         this.apellido = apellido;
         this.nombre = nombre;
         this.matricula = matricula;
-        crearAgenda(LocalDateTime.now(), LocalDateTime.now().plusDays(5));
+        crearAgenda(LocalDateTime.now(), LocalDateTime.now().plusDays(1));
     }
 
     public Odontologo() {
+        crearAgenda(LocalDateTime.now(), LocalDateTime.now().plusDays(1));
     }
 
     private void crearAgenda(LocalDateTime fechaDesde, LocalDateTime fechaHasta) {
@@ -45,7 +46,7 @@ public class Odontologo {
         List<Date> fechas = new ArrayList<>();
         ZonedDateTime dateTimeActual = dateTimeDesde;
         while (!dateTimeActual.isAfter(dateTimeHasta)) {
-            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).withNano(0).plusHours(1);
+            ZonedDateTime roundedDateTime = dateTimeActual.withMinute(0).withSecond(0).withNano(0).plusHours(4);
             Date date = Date.from(roundedDateTime.toInstant());
             fechas.add(date);
             dateTimeActual = dateTimeActual.plusHours(1);

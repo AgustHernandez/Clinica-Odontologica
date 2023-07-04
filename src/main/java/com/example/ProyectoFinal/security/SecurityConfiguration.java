@@ -32,6 +32,7 @@ public class SecurityConfiguration extends WebSecurityConfigurerAdapter {
                 .antMatchers("/pacientes/**","/api/pacientes/**", "/odontologos/**","/api/odontologos/**").hasRole("ADMIN")
                 .anyRequest()
                 .authenticated().and()
+                .exceptionHandling().accessDeniedPage("/403").and()
                 .httpBasic().and()
                 .formLogin();
     }
